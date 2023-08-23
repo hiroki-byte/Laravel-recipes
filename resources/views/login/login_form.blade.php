@@ -8,7 +8,7 @@
 </head>
 <body>
 <main class="form-signin w-100 m-auto">
-  <form class="form-signin" method="POST" action="{{route('login')}}">
+  <form action="/login" class="form-signin" method="POST">
     @csrf
     <h1 class="h3 mb-3 fw-normal">ログインフォーム</h1>
     @if ($errors->any())
@@ -20,12 +20,17 @@
             </ul>
         </div>
     @endif
+
+    <x-alert type="danger" :session="session('login_error')"/>
+
+    <x-alert type="danger" :session="session('logout')"/>
+
     <div class="form-floating">
       <input type="email" name="email" class="form-control" id="floatingInput" placeholder="name@example.com" autofocus>
       <label for="floatingInput">Email address</label>
     </div>
     <div class="form-floating">
-      <input type="password" class="form-control" id="floatingPassword" >
+      <input type="password" name="password" class="form-control" id="floatingPassword" >
       <label for="floatingPassword">Password</label>
     </div>
 
