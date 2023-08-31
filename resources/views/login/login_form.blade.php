@@ -1,16 +1,16 @@
-<!DOCTYPE html>
-<html lang="ja">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    @vite(['resources/sass/app.scss','resources/css/app.css','resources/css/signin.css', 'resources/js/app.js',])
-    <title>ログインフォーム</title>
-</head>
-<body>
-<main class="form-signin w-100 m-auto">
+@extends('layouts.signin')
+@section('content')
+<div class="container mr-auto mt-3 d-flex justify-content-end">
+<form>
+      <button class="btn btn-outline-primary w-100 py-2">
+        <a href="/signupform">新規アカウント作成</a>
+      </button>
+</form>
+</div>
+<section class="form-signin w-100 m-auto">
   <form action="/login" class="form-signin" method="POST">
     @csrf
-    <h1 class="h3 mb-3 fw-normal">ログインフォーム</h1>
+    <h1 class="h3 mb-3 fw-normal">ログイン</h1>
     @if ($errors->any())
         <div class="alert alert-danger">
             <ul>
@@ -20,25 +20,31 @@
             </ul>
         </div>
     @endif
-
+    <x-alert type="success" :session="session('login_success')"/>
+    <x-alert type="success" :session="session('signup')"/>
     <x-alert type="danger" :session="session('login_error')"/>
-
     <x-alert type="danger" :session="session('logout')"/>
 
     <div class="form-floating">
-      <input type="email" name="email" class="form-control" id="floatingInput" placeholder="name@example.com" autofocus>
-      <label for="floatingInput">Email address</label>
+      <input type="email" name="email" class="form-control" id="floatingInput">
+      <label for="floatingInput">Eメールアドレス</label>
     </div>
-    <div class="form-floating">
+    <div class="form-floating mb-5">
       <input type="password" name="password" class="form-control" id="floatingPassword" >
-      <label for="floatingPassword">Password</label>
+      <label for="floatingPassword">パスワード</label>
     </div>
 
 
     </div>
-    <button class="btn btn-primary w-100 py-2" type="submit">ログイン</button>
+    <div class="col">
+      <button class="btn btn-primary w-100 py-2" type="submit">ログイン</button>
+    </div>
   </form>
-</main>
-
-</body>
-</html>
+  <div class="">
+      <form method ="POST" action="{{ route('guestLogin') }}" class="form-signin">
+        @csrf
+        <button class="btn btn-primary w-100 py-2">ゲストとしてログイン</button>
+      </form>
+    </div>
+</section>
+@endsection

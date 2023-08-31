@@ -20,7 +20,7 @@ document.getElementById('add-form-button').addEventListener('click', function() 
     nestedElement3.innerHTML = ``;
 
     var nestedElement4 = document.createElement('div');
-    nestedElement4.classList.add('col-5');
+    nestedElement4.classList.add('col-5','mb-2');
     nestedElement4.innerHTML = `
     <select class="form-select" name="iname[]">
         <option value="" disabled selected hidden>検索した材料を選択</option>
@@ -30,7 +30,7 @@ document.getElementById('add-form-button').addEventListener('click', function() 
     var nestedElement5 = document.createElement('div');
     nestedElement5.classList.add('col-4');
     nestedElement5.innerHTML = `
-    <input type="text" name="miname[]" placeholder="選択した材料" class="form-control" readonly>
+    <input type="text" name="miname[]" placeholder="選択した材料" class="form-control">
     <input type="hidden" name="iid[]" value="">
     `;
 
@@ -40,12 +40,18 @@ document.getElementById('add-form-button').addEventListener('click', function() 
     <input type="text" name="amount[]" placeholder="分量を入力(g)" class="form-control">
     `;
     
+    var nestedElement7 = document.createElement('div');
+    nestedElement7.innerHTML = `
+    <hr class="my-2 --bs-border-color border-2">
+    `;
+
     formElement.appendChild(nestedElement1);
     formElement.appendChild(nestedElement2);
     formElement.appendChild(nestedElement3);
     formElement.appendChild(nestedElement4);
     formElement.appendChild(nestedElement5);
     formElement.appendChild(nestedElement6);
+    formElement.appendChild(nestedElement7);
   
     // フォームを追加する要素に新しいフォームを追加
     var formContainer = document.getElementById('form-container');
@@ -109,11 +115,9 @@ document.getElementById('add-form-button').addEventListener('click', function() 
                         // "elm"は"element"の略称です　エレメント（要素）とは「HTMLタグ」で囲んだ情報の単位を示します
                     });
                 });
-                alert("実行成功");
             }) 
             .catch(error => {
-                alert("実行失敗");　
-                alert(error);
+                alert("検索に失敗しました。キーワードを変えて再度検索してください。");
             })
         });
     });

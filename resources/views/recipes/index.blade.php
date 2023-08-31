@@ -2,19 +2,19 @@
 @extends('layouts.app') 
 
 @section('content')
-    @foreach($recipes as $recipe)
-        <!-- 3つのアイテムごとに新しいrowを開始 -->
-        @if($loop->iteration % 3 == 1)
-            <div class="row">
-        @endif
-        <div class ="col" style="overflow: hidden; width:400px; height:400px;">
-            <div class="mb-1"><a href="/recipes/{{$recipe->rid}}"><img src="{{ Storage::url($recipe->image) }}" class="img-fluid rounded"></a></div>
-            <div class="col=12 text-start"><h2>{{$recipe->rname}}</h2></div>
-         </div>
-        <!-- 3つのアイテムごとにrowを閉じる -->
-        @if($loop->iteration % 3 == 0 || $loop->last)
-            </div> 
-        @endif
-    @endforeach
-    <a href="/recipes/create">Create</a>
+    <x-alert type="success" :session="session('recipe_success')"/>
+    <div class="row row-cols-1 row-cols-sm-2 row-cols-md-3 g-3">
+        @foreach($recipes as $recipe)
+        <div class="col">
+            <div class="card shadow-sm">
+                <a href="/recipes/{{$recipe->rid}}">
+                    <img src="{{ Storage::url($recipe->image) }}"  alt="Image" class="img-fluid img-thumbnail">
+                </a>
+            </div>
+            <div class="card-body">
+                <p class="card-text">{{$recipe->rname}}</p>
+            </div>
+        </div>
+        @endforeach
+    </div>
 @endsection
