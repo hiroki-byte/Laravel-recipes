@@ -8,8 +8,6 @@ Route::get('/', function(){
     return view('layouts/app');
 });
 
-Route::get('/show_all', [RecipesController::class, 'showAll']);
-Route::resource('recipes', RecipesController::class);
 Route::get('/signupform', [AuthController::class,'showSignup'])->name('login.showsignup');
 Route::post('/signup', [AuthController::class,'Signup'])->name('login.signup');
 
@@ -27,6 +25,8 @@ Route::middleware(['auth'])->group(function () {
     Route::post('logout',[AuthController::class, 'logout'])->name('logout');
     Route::get('/mypage', [RecipesController::class, 'mypage']);
     Route::get('/search', [RecipesController::class, 'search']);
+    Route::get('/show_all', [RecipesController::class, 'showAll']);
+    Route::resource('recipes', RecipesController::class);
 });
 
 
