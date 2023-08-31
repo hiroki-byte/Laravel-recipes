@@ -156,6 +156,22 @@ return [
     'attributes' => [
         'email' => 'メールアドレス',
         'password' => 'パスワード',
+        'password1' => 'パスワード',
+        'password2' => 'パスワード(確認用)',
+        'name' => 'ユーザ名',
+        'rname' => 'レシピ名',
+        'serving' => 'レシピ対応人数',
+        'image' => 'レシピ画像',
+        'rcomment' => 'レシピコメント',
+        'iid' => '食材名',
+        'amount' => '分量',
+        'steps_comment' => '作り方',
+        'iid.0' => '食材名',
+        'iid.*' => '食材名',
+        'amount.0' => '分量',
+        'amount.*' => '分量',
+        'steps_comment.0' => '作り方',
+        'steps_comment.*' => '作り方',
     ],
 
 ];
